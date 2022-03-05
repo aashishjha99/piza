@@ -1,8 +1,9 @@
 .bgcolor {
   background-color: #ffc107;
+  border: 0px;
 }
 
 .bor {
-  border: 0px;
+  border-right: 2px solid white;
   text-decoration: none;
 }

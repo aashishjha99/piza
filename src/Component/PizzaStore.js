@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Menu from "./Menu";
-
+let storeData;
 export class PizzaStore extends Component {
   constructor() {
     super();
@@ -9,10 +9,11 @@ export class PizzaStore extends Component {
     };
   }
 
-  async componentDdMoiunt() {
+  async componentDidMount() {
     let url = "https://run.mocky.io/v3/ec196a02-aaf4-4c91-8f54-21e72f241b68";
     let data = await fetch(url);
     let parsedData = await data.json();
+    storeData = parsedData;
     console.log(parsedData);
     this.setState({ article: parsedData });
   }
@@ -41,6 +42,12 @@ export class PizzaStore extends Component {
       article: this.state.article.filter((e) => {
         return e.isVeg === !true;
       }),
+    });
+  };
+
+  reset = () => {
+    this.setState({
+      article: storeData,
     });
   };
 
@@ -84,6 +91,13 @@ export class PizzaStore extends Component {
                 onClick={this.veg}
               >
                 <i className="bi bi-flower1"></i>
+              </button>
+              <button
+                type="button"
+                className="btn btn-warning mx-2"
+                onClick={this.reset}
+              >
+                <i class="bi bi-bootstrap-reboot"></i>{" "}
               </button>
             </div>
           </div>
